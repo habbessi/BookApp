@@ -1,0 +1,96 @@
+﻿
+@{ 
+
+    var status = Context.Request.Query["status"];
+
+    var pending = "text-primary";
+    var inprocess = "text-primary";
+    var completed = "text-primary";
+    var approved = "text-primary";
+    var all = "text-primary";
+
+    switch (status)
+    {
+        case "pending":
+            pending = "active text-white";
+            break;
+        case "inprocess":
+            inprocess = "active text-white";
+            break;
+        case "completed":
+            completed = "active text-white";
+            break;
+        case "approved":
+            approved = "active text-white";
+            break;
+        default:
+            all = "active text-white";
+            break;
+    }
+    }
+
+<div class=" p-3">
+    <div class="d-flex justify-content-between pt-4">
+        <div class="p-2">
+            <h2 class="text-primary">Order List</h2>
+        </div>
+        <div class="p-2">
+            <ul class="list-group list-group-horizontal-sm" style="list-style:none;">
+                <li>
+                    <a asp-controller="Order" asp-action="Index" asp-route-status="inprocess"
+                       style="text-decoration:none;">
+                        <div class="list-group-item @inprocess">In Process</div>
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="Order" asp-action="Index" asp-route-status="pending"
+                       style="text-decoration:none;">
+                        <div class="list-group-item @pending">Payment Pending</div>
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="Order" asp-action="Index" asp-route-status="completed"
+                       style="text-decoration:none;">
+                        <div class="list-group-item @completed">Completed</div>
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="Order" asp-action="Index" asp-route-status="approved"
+                       style="text-decoration:none;">
+                        <div class="list-group-item @approved">Approved</div>
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="Order" asp-action="Index" asp-route-status="all"
+                       style="text-decoration:none;">
+                        <div class="list-group-item @all">All</div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <br /><br />
+
+
+    <table id="table_id" class="display table table-bordered table-striped w-100">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Phone Number</th>
+                <th>Email</th>
+                <th>Status</th>
+                <th>Total</th>
+                <th></th>
+            </tr>
+        </thead>
+
+    </table>
+</div>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+    <script src="~/js/Order.js"></script>
+}

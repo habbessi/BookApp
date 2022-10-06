@@ -1,0 +1,56 @@
+﻿@model IEnumerable<CoverType>
+
+
+@{
+    ViewData["Title"] = "Index";
+}
+<partial name="_Notification" />
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">CoverType List</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="CoverType" asp-action="Create" class="btn btn-primary">
+                <i class="bi bi-plus"></i> &nbsp; New CoverType
+            </a>
+        </div>
+    </div>
+    <br /><br />
+
+
+    <table class="table table-bordered table-striped w-100">
+        <thead>
+            <tr>
+                <th>CoverType Name</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var obj in Model)
+            {
+                <tr>
+                    <td>@obj.Name</td>
+                    <td>
+
+                        <form asp-controller="CoverType" asp-action="Delete" asp-route-id="@obj.Id">
+                            <div class="w-75 btn-group btn-group-sm" role="group">
+                                <a asp-controller="CoverType" asp-action="Edit" asp-route-id="@obj.Id" class="btn btn-primary mx-2"><i class="bi bi-pencil"></i></a>
+                                <button type="submit" class="btn btn-danger"  onclick="return confirm('Are you sure to delete this record ?')"><i class="bi bi-trash3" ></i></button>
+                            </div>
+                        </form>
+
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

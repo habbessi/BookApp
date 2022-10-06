@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Product> 
+    
+ @*@{
+    ViewData["Title"] = "Home Page";
+}*@
+<partial name="_Notification" />
+<div class="row pb-3">
+    @foreach(var product in Model)
+    { 
+    <div class="col-lg-3 col-md-6">
+        <div class="row p-2">
+            <div class="col-12 p-1" >
+                <div class="card-body">
+                    <div class="card align-items-center">
+                        <img src="@product.ImageUrl" class="img-thumbnail" style="height:300px;" />
+                        <div class="pl-1 pb-1">
+                            <p class="card-title h5 text-primary">@product.Title</p>
+                            <p class="card-title  text-info"><span style="color:#000000">Author:</span> @product.Author</p>
+                        </div>
+                        <div class="pl-1">
+                            <p>List Price:<strike><b>$@product.ListPrice.ToString("0.00")</b></strike> </p>
+                        </div>
+                        <div class="pl-1">
+                            <p>As low as:<b>$@product.Price100.ToString("0.00")</b></p>
+                        </div>
+                        <div class=" w-100 pt-1">
+                            <a asp-action="Details" class="btn btn-primary form-control" asp-route-productId="@product.Id">Details</a>
+                        </div>
+                    </div>
+                </div>
+               
+            </div>
+        </div>
+    </div>
+    
+    }
+</div>
